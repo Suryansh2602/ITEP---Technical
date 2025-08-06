@@ -2,50 +2,37 @@
 // WAP to to count the occurance of all element in array
 import java.util.Scanner;
 
-class Main {
+class Test {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-
-        System.out.println("Enter the size of array: ");
-        int n = sc.nextInt();
-        int[] arr = new int[n];
-
-        // Taking input
+        Scanner se = new Scanner(System.in);
+        System.out.println("How many numbers do you want to save?");
+        int n = se.nextInt();
+        int arr[] = new int[n];
+        System.out.println("Enter the array elements:");
         for (int i = 0; i < n; i++) {
-            System.out.println("Enter the " + (i + 1) + " element: ");
-            arr[i] = sc.nextInt();
+            arr[i] = se.nextInt();
         }
 
-        System.out.println("Your original array is: ");
+        System.out.println("The array is :");
         for (int i = 0; i < n; i++) {
             System.out.print(arr[i] + " ");
         }
         System.out.println();
 
-        // Count and print occurrences of unique elements
+        boolean[] visited = new boolean[n];
+
         for (int i = 0; i < n; i++) {
-            boolean alreadyCounted = false;
-
-            // Check if element arr[i] appeared before index i
-            for (int k = 0; k < i; k++) {
-                if (arr[k] == arr[i]) {
-                    alreadyCounted = true;
-                    break;
+            if (visited[i]) // already counted this element
+                continue;
+            int occ = 1;
+            for (int j = i + 1; j < n; j++) {
+                if (arr[i] == arr[j]) {
+                    occ++;
+                    visited[j] = true; // mark as counted
                 }
             }
-
-            // If not appeared before, count the occurrences now
-            if (!alreadyCounted) {
-                int count = 0;
-                for (int j = 0; j < n; j++) {
-                    if (arr[j] == arr[i]) {
-                        count++;
-                    }
-                }
-                System.out.println("The occurrence of " + arr[i] + " is " + count);
-            }
+            System.out.println("Occurrence of " + arr[i] + " is " + occ);
         }
-
-        sc.close();
+        se.close();
     }
 }
