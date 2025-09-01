@@ -27,9 +27,33 @@ interface SmartDevice {
 }
 
 abstract class Appliance {
-    protected String name;
-    protected int power; 
-    protected boolean isOn = false;
+    private String name;
+    private int power;
+    private boolean On = false;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setOn(boolean isOn) {
+        this.On = isOn;
+    }
+
+    public void setPower(int power) {
+        this.power = power;
+    }
+
+    public int getPower() {
+        return power;
+    }
+
+    public boolean getOn(boolean a) {
+        return On;
+    }
 
     public Appliance(String name, int power) {
         this.name = name;
@@ -41,7 +65,7 @@ abstract class Appliance {
     public abstract void turnOff();
 
     public void showStatus() {
-        String status = isOn ? "ON" : "OFF";
+        String status = On ? "ON" : "OFF";
         System.out.println(name + " (" + power + "W) is " + status + ".");
     }
 }
@@ -52,13 +76,13 @@ class Fan extends Appliance {
     }
 
     public void turnOn() {
-        isOn = true;
-        System.out.println(name + " is spinning.");
+        setOn(true);
+        System.out.println(getName() + " is spinning.");
     }
 
     public void turnOff() {
-        isOn = false;
-        System.out.println(name + " has stopped.");
+        setOn(false);
+        System.out.println(getName() + " has stopped.");
     }
 }
 
@@ -68,17 +92,17 @@ class Light extends Appliance implements SmartDevice {
     }
 
     public void turnOn() {
-        isOn = true;
-        System.out.println(name + " turned on.");
+        setOn(true);
+        System.out.println(getName() + " turned on.");
     }
 
     public void turnOff() {
-        isOn = false;
-        System.out.println(name + " turned off.");
+        setOn(false);
+        System.out.println(getName() + " turned off.");
     }
 
     public void connectWifi() {
-        System.out.println(name + " connected to WiFi.");
+        System.out.println(getName() + " connected to WiFi.");
     }
 }
 
@@ -88,17 +112,17 @@ class WashingMachine extends Appliance implements SmartDevice {
     }
 
     public void turnOn() {
-        isOn = true;
-        System.out.println(name + " started washing.");
+        setOn(true);
+        System.out.println(getName() + " started washing.");
     }
 
     public void turnOff() {
-        isOn = false;
-        System.out.println(name + " stopped washing.");
+        setOn(false);
+        System.out.println(getName() + " stopped washing.");
     }
 
     public void connectWifi() {
-        System.out.println(name + " connected to WiFi.");
+        System.out.println(getName() + " connected to WiFi.");
     }
 }
 
