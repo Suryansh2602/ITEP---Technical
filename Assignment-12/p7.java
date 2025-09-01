@@ -1,11 +1,8 @@
 // Problem 6: Zoo Animal Management 
 
 // Abstract class Animal:
-
 // name, age
-
 // abstract methods eat(), makeSound()
-
 // concrete method showInfo()
 
 // Subclasses:
@@ -17,7 +14,6 @@
 // Parrot
 
 // Interface Flyable with fly() method.
-
 // Only Parrot implements Flyable.
 // ------------------------------------------------------------------
 interface Flyable {
@@ -25,8 +21,24 @@ interface Flyable {
 }
 
 abstract class Animal {
-    protected String name;
-    protected int age;
+    private String name;
+    private int age;
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
 
     public Animal(String name, int age) {
         this.name = name;
@@ -48,11 +60,11 @@ class Lion extends Animal {
     }
 
     public void eat() {
-        System.out.println(name + " eats meat.");
+        System.out.println(getName() + " eats meat.");
     }
 
     public void makeSound() {
-        System.out.println(name + " roars!");
+        System.out.println(getName() + " roars!");
     }
 }
 
@@ -62,11 +74,11 @@ class Elephant extends Animal {
     }
 
     public void eat() {
-        System.out.println(name + " eats grass and fruits.");
+        System.out.println(getName() + " eats grass and fruits.");
     }
 
     public void makeSound() {
-        System.out.println(name + " trumpets!");
+        System.out.println(getName() + " trumpets!");
     }
 }
 
@@ -76,15 +88,15 @@ class Parrot extends Animal implements Flyable {
     }
 
     public void eat() {
-        System.out.println(name + " eats seeds and fruits.");
+        System.out.println(getName() + " eats seeds and fruits.");
     }
 
     public void makeSound() {
-        System.out.println(name + " chirps!");
+        System.out.println(getName() + " chirps!");
     }
 
     public void fly() {
-        System.out.println(name + " flies around the zoo.");
+        System.out.println(getName() + " flies around the zoo.");
     }
 }
 
