@@ -1,207 +1,154 @@
-Problem Statement 🚗
 
-You are building a transportation system for a logistics company.
+1. Divide by Zero Exception
 
-Requirements:
+👉 Write a program that takes two numbers from the user and divides them. Handle the case where the second number is zero.
 
-Every Vehicle should have:
+// Expected
+Enter first number: 10
+Enter second number: 0
+java.lang.ArithmeticException caught: / by zero
 
-a registration number,
+2. InputMismatchException
 
-a method to start,
+👉 Ask the user to enter an integer. If the user enters text instead, catch the exception.
 
-a method to stop.
+// Expected
+Enter an integer: abc
+java.util.InputMismatchException caught
 
-Some vehicles run on Fuel (like Car, Truck), while others run on Electricity (like ElectricBike, ElectricCar).
+3. ArrayIndexOutOfBoundsException
 
-Create an interface Chargeable that forces all electric vehicles to implement:
+👉 Create an array of size 5. Ask the user for an index and print the element. Handle the case when the index is out of range.
 
-chargeBattery() method.
+// Expected
+Enter index: 8
+java.lang.ArrayIndexOutOfBoundsException caught
 
-Create an abstract class Vehicle that:
+4. NullPointerException
 
-Stores the registration number.
+👉 Declare a String = null. Try to call length() on it. Handle the exception.
 
-Has abstract methods start() and stop().
+// Expected
+java.lang.NullPointerException caught
 
-Has a concrete method displayInfo() to show vehicle details.
+5. Multiple Catch Blocks
 
-Create subclasses:
+👉 Take two integers and perform division. Handle both ArithmeticException and InputMismatchException separately.
 
-Car (inherits from Vehicle) → Fuel based.
+6. Finally Block Practice
 
-Truck (inherits from Vehicle) → Fuel based.
+👉 Open a Scanner, read an input, and always close the scanner in finally (show that finally always executes).
 
-ElectricBike (inherits from Vehicle and implements Chargeable).
+7. Custom Exception
 
-ElectricCar (inherits from Vehicle and implements Chargeable).
+👉 Create your own exception InvalidAgeException. If age < 18, throw the exception.
 
-In the main class (TransportSystem),
+class InvalidAgeException extends Exception {
+    InvalidAgeException(String msg) {
+        super(msg);
+    }
+}
 
-Create objects of all types of vehicles.
 
-Call their methods (start, stop, chargeBattery where required).
+Test in main:
 
-Expected Output Example
-Car KA01AB1234 starting with petrol engine...
-Car KA01AB1234 stopped.
-Truck KA02XY9876 starting with diesel engine...
-Truck KA02XY9876 stopped.
-Electric Bike KA03EL5678 starting silently...
-Electric Bike KA03EL5678 battery charging...
-Electric Bike KA03EL5678 stopped.
-Electric Car KA04EV4321 starting silently...
-Electric Car KA04EV4321 battery charging...
-Electric Car KA04EV4321 stopped.
-------------------------------------------------------------------------------------------------------------------------------
-🔹 Problem Set on Abstract Class, Inheritance & Interface
-Problem 1: Payment Gateway System 💳
+if(age < 18) throw new InvalidAgeException("Not eligible for voting");
 
-Create an abstract class Payment with:
+8. Checked vs Unchecked Exception
 
-amount field
+👉 Write a program with a method that throws IOException (checked) and another that throws ArithmeticException (unchecked). Show the difference in compiler behavior.
 
-abstract method pay()
+9. Throws Keyword
 
-concrete method paymentDetails()
+👉 Write a method readFile(String fileName) that uses FileReader. Declare it with throws IOException and handle it in main().
 
-Subclasses:
+10. Try-with-Resources
 
-CreditCardPayment
-    
-DebitCardPayment
+👉 Open a file using try-with-resources (Java 7+) and show that the file closes automatically without finally.
+------------------------------------------------------------------------------------------------------------------------------------------
+1. Banking System – Insufficient Balance
 
-UPIPayment
+You are building a banking system. A user tries to withdraw more money than available in their account.
 
-Create an interface Refundable with processRefund() method.
+Which exception would you throw?
 
-Only CreditCardPayment and UPIPayment should implement Refundable.
+Will you use a checked or unchecked exception? Why?
 
-In main class, create different payments and process refund where applicable.
----------------------------------------------------------------------------------------------------------
-Problem 2: Employee Management System 👨‍💼👩‍💼
-Abstract class Employee:
-id, name, salary fields
-abstract method calculateSalary()
-concrete method showDetails()
-Subclasses:
+Write a custom exception InsufficientBalanceException.
 
-FullTimeEmployee (salary = fixed monthly)
+2. File Upload System
 
-PartTimeEmployee (salary = hourly * rate)
+A web app allows file upload. But the file path provided by the user does not exist.
 
-Intern (stipend based)
+Which Java exception will occur?
 
-Interface BonusEligible with method giveBonus().
+How would you handle it so the program doesn’t crash?
 
-Only FullTimeEmployee and PartTimeEmployee should implement BonusEligible.
+Should you retry or show a friendly message to the user?
 
-In main class, create employees and calculate salary + bonus.
--------------------------------------------------------------------------------------------------------------
-Problem 3: Online Learning Platform 🎓
+3. Online Exam System
 
-Abstract class Course:
+A student enters their roll number (integer), but by mistake they enter "abc".
 
-title, duration fields
 
-abstract method startCourse(), endCourse()
+Which exception will occur?
 
-concrete method courseDetails()
+How can you catch it and ask them to re-enter?
 
-Subclasses:
+Can you use a loop to keep asking until they enter valid input?
 
-VideoCourse
+4. E-commerce Discount Calculation
 
-LiveCourse
+Suppose you are dividing total amount by quantity to get per item price. If quantity = 0, what happens?
 
-Interface CertificateProvider with generateCertificate() method.
+Which exception will occur?
 
-Only VideoCourse provides certificates.
+How will you ensure the program continues and doesn’t stop execution?
 
-In main method, simulate starting, ending, and generating certificates.
-------------------------------------------------------------------------------------------------------------
-Problem 4: Banking System 🏦
+5. ATM PIN Validation
 
-Abstract class BankAccount:
+If the user enters a wrong PIN 3 times, throw a custom exception AccountLockedException.
 
-accountNumber, balance fields
+Which exception handling mechanism will you use?
 
-abstract methods: deposit(), withdraw()
+Should it be checked (force the programmer to handle) or unchecked?
 
-concrete method showBalance()
+6. Student Management System
 
-Subclasses:
+You are fetching student data from a database. If the record is not found:
 
-SavingsAccount (cannot withdraw below ₹1000)
+Will you return null or throw a RecordNotFoundException?
 
-CurrentAccount (no min balance required)
+Which approach is better and why?
 
-Interface LoanEligible with method checkLoanEligibility().
+7. Network Connection
 
-Only SavingsAccount is loan eligible.
--------------------------------------------------------------------------------------------------
-Problem 5: Smart Home System 🏠💡
+Suppose you are connecting to a server. The connection might fail due to network issues.
 
-Abstract class Appliance:
+Which exception will be thrown?
 
-name, power
+Should you handle it with try-catch or let it propagate using throws? Why?
 
-abstract methods turnOn(), turnOff()
+8. Shopping Cart
 
-concrete method showStatus()
+While calculating total price, one product’s price is missing (null).
 
-Subclasses:
+What exception will occur?
 
-Fan
+How would you handle it? (Default price, error message, or skip item?)
 
-Light
+9. Online Library System
 
-WashingMachine
+A student is trying to issue more books than the limit (say, 3).
 
-Interface SmartDevice with method connectWifi().
+Should you handle it with a business rule check or by throwing a custom exception MaxBooksIssuedException?
 
-Only Light and WashingMachine are smart devices.
+Justify your answer.
 
-In main method, turn on/off appliances and connect smart ones to WiFi.
----------------------------------------------------------------------------------------------------
-Problem 6: Zoo Animal Management 🦁🐘🐦
+10. Real-Time Logging
 
-Abstract class Animal:
+You are writing logs to a file. Suddenly, the file system becomes read-only.
 
-name, age
+Which exception will occur?
 
-abstract methods eat(), makeSound()
-
-concrete method showInfo()
-
-Subclasses:
-
-Lion
-
-Elephant
-
-Parrot
-
-Interface Flyable with fly() method.
-
-Only Parrot implements Flyable.
---------------------------------------------------------------------------------------------
-Problem 7: E-commerce Order System 🛒
-
-Abstract class Order:
-
-orderId, amount
-
-abstract methods processOrder(), cancelOrder()
-
-concrete method orderSummary()
-
-Subclasses:
-
-OnlineOrder
-
-StorePickupOrder
-
-Interface DiscountApplicable with applyDiscount() method.
-
-Only OnlineOrder gets discount.
+How would you make sure logs are not lost (maybe backup to console or DB)?
