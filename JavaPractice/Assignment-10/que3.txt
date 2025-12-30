@@ -1,0 +1,27 @@
+What are the role of setter and getter method ? What is POJO In Java.
+
+Roles of Setter and Getter Methods in Java 
+Getter and setter methods, also known as accessors and mutators respectively, play a crucial role in Java by providing controlled access to the private fields (instance variables) of a class. [1]  
+
+• Getter Method (Accessor): A getter method is used to retrieve the value of a private instance variable. It typically follows the naming convention getVariableName(), where VariableName is the name of the instance variable. For example, getName() would retrieve the value of a name variable. 
+• Setter Method (Mutator): A setter method is used to modify or set the value of a private instance variable. It typically follows the naming convention setVariableName(dataType value), where VariableName is the name of the instance variable and value is the new value to be assigned. For example, setName(String newName) would set the value of a name variable. 
+
+The primary purpose of using getters and setters is to enforce encapsulation, a core principle of Object-Oriented Programming (OOP). By making instance variables private and exposing them only through public getter and setter methods, you can: 
+
+• Control Data Access: Prevent direct manipulation of data, ensuring data integrity and consistency. 
+• Implement Validation Logic: Add validation or business logic within setter methods to ensure that data is set within acceptable boundaries. 
+• Achieve Data Hiding: Conceal the internal representation of data from external classes, allowing for changes in implementation without affecting client code. 
+
+POJO (Plain Old Java Object) in Java 
+A POJO, or Plain Old Java Object, is an ordinary Java object that does not extend any specific framework classes or implement any specific framework interfaces. It is a simple, self-contained object that primarily serves as a container for data. 
+Key characteristics of a POJO include: 
+
+• Simplicity: POJOs are typically lightweight and straightforward, focusing on data representation. 
+• No Framework Dependencies: They are not tied to any particular framework or library, making them highly portable and reusable. 
+• Encapsulation: While not strictly required, POJOs commonly utilize private instance variables with public getter and setter methods to encapsulate their data and provide controlled access, adhering to good object-oriented design principles. 
+• Lack of Business Logic: POJOs generally do not contain complex business logic; their main purpose is to hold and transfer data. 
+
+POJOs are widely used in Java applications for various purposes, including data transfer objects (DTOs), domain models, and representing entities in persistence layers. 
+
+
+

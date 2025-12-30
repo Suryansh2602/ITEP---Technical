@@ -1,0 +1,42 @@
+How to update and retrive  the value of a particular property of an object from anothor class(Let suppose the property is private) ?
+
+To update and retrieve the value of a private property of an object from another class, the most common and recommended approach is to use public "getter" and "setter" methods (also known as accessors and mutators). This adheres to the principle of encapsulation, which is fundamental to object-oriented programming. 
+1. Getter Method (Retrieving the value): 
+A public getter method is defined within the class that owns the private property. This method returns the value of the private property, allowing other classes to read it without directly accessing the private member. 
+public class MyClass {
+    private int privateProperty;
+
+    public int getPrivateProperty() {
+        return privateProperty;
+    }
+}
+
+2. Setter Method (Updating the value): 
+A public setter method is also defined within the class owning the private property. This method takes a parameter (the new value) and assigns it to the private property. This allows other classes to modify the private member through a controlled interface, potentially including validation or other logic. 
+public class MyClass {
+    private int privateProperty;
+
+    public void setPrivateProperty(int newValue) {
+        // Optional: Add validation or other logic here
+        this.privateProperty = newValue;
+    }
+}
+
+Using from another class: 
+To update and retrieve the value from another class, you would create an instance of MyClass and then call its public getter and setter methods: 
+public class AnotherClass {
+    public static void main(String[] args) {
+        MyClass obj = new MyClass();
+
+        // Update the private property
+        obj.setPrivateProperty(100);
+
+        // Retrieve the private property
+        int value = obj.getPrivateProperty();
+        System.out.println("Private property value: " + value);
+    }
+}
+
+
+
+

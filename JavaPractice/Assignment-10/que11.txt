@@ -1,0 +1,54 @@
+Can we overload the method with var-arg type of argument.
+
+Yes, it is possible to overload methods that utilize varargs (variable arguments) in Java. 
+Method overloading relies on distinct method signatures, which can differ by the number of parameters, the type of parameters, or both. Varargs, despite allowing a variable number of arguments, still define a specific parameter type (e.g., int..., String...). 
+Here are the common scenarios for overloading methods with varargs: 
+
+• Overloading with different varargs types: You can have multiple overloaded methods where each method accepts a varargs parameter of a different data type. 
+
+    public class VarargsOverload {
+        public static void printValues(int... args) {
+            System.out.println("Integer varargs method called.");
+            for (int arg : args) {
+                System.out.print(arg + " ");
+            }
+            System.out.println();
+        }
+
+        public static void printValues(String... args) {
+            System.out.println("String varargs method called.");
+            for (String arg : args) {
+                System.out.print(arg + " ");
+            }
+            System.out.println();
+        }
+
+        public static void main(String[] args) {
+            printValues(1, 2, 3);
+            printValues("apple", "banana", "cherry");
+        }
+    }
+
+• Overloading with a mix of fixed parameters and varargs: You can overload a varargs method with another method that has a fixed number of parameters, even if those parameters could potentially be covered by the varargs. The more specific method (with fixed parameters) will be chosen if a precise match exists. 
+
+    public class VarargsOverloadFixed {
+        public static void process(int a, int b) {
+            System.out.println("Fixed two int parameters: " + a + ", " + b);
+        }
+
+        public static void process(int... args) {
+            System.out.println("Integer varargs method called.");
+            for (int arg : args) {
+                System.out.print(arg + " ");
+            }
+            System.out.println();
+        }
+
+        public static void main(String[] args) {
+            process(10, 20); // Calls the fixed parameter method
+            process(5, 6, 7); // Calls the varargs method
+        }
+    }
+
+
+

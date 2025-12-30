@@ -1,0 +1,19 @@
+
+// 1+11+111+1111+11111+.... 
+import java.util.Scanner;
+import java.lang.Math;
+
+class P {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the number of terms: ");
+        int n = sc.nextInt();
+        int i = 1, num = 0, sum = 0;
+        while (i != n) {
+            num = (int) num * 10 + 1;
+            sum = sum + num;
+            i++;
+        }
+        System.out.println("Sum: " + sum);
+    }
+}

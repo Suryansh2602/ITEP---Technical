@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Paragraphs, Hyperlinks, Image Links & Jump Links</title>
+
+</head>
+
+<body>
+
+    <h2>Example of Paragraphs with Hyperlinks and Jump Link</h2>
+
+    <p>
+        This is an example paragraph with a
+        <a href="https://www.example.com" target="_blank" rel="noopener">hyperlink</a>
+        to an external website.
+    </p>
+
+    <p>
+        You can also have multiple links inside a single paragraph for easy navigation. For example, visit
+        <a href="https://www.wikipedia.org" target="_blank" rel="noopener">Wikipedia</a> or
+        <a href="https://www.github.com" target="_blank" rel="noopener">GitHub</a>.
+    </p>
+
+    <!-- Image as a hyperlink -->
+    <p>
+        Click on the image below to go to the GeeksforGeeks homepage:
+    </p>
+    <a href="https://www.geeksforgeeks.org" target="_blank" rel="noopener" class="image-link">
+        <img src="https://media.geeksforgeeks.org/wp-content/uploads/geeksforgeeks-13.png" alt="GeeksforGeeks Logo" />
+    </a>
+
+    <!-- Jump link within the page -->
+    <p>
+        Want to read more details?
+        <a href="#more">Read More</a>
+    </p>
+
+    <!-- Content section where the jump link goes -->
+    <div id="more">
+        <h3>More Information</h3>
+        <p>
+            This section is further down the page and is accessed via the jump link above. The jump link uses an
+            internal anchor (#more) to navigate within the same page smoothly.
+        </p>
+        <p>
+            Jump links are useful for long web pages, allowing users to quickly move to different sections without
+            scrolling manually. The smooth scroll effect is added via CSS for a better user experience.
+        </p>
+    </div>
+
+</body>
+
+</html>

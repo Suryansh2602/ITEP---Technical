@@ -1,0 +1,15 @@
+What is Object oriented? Write down difference b/w Object oriented and procedure oriented programming approach.
+
+Object oriented programming
+1. Bottom-up aaproach.
+2. It focuses on the data not the procedure
+3. Divide code into objects into objects (objects + data)
+4. Support access modifier (private/ public / protected)
+5. Inheritance polymorphism, interface 
+
+Procedural oriented programming
+1. Top down approach 
+2. It focuses on the flow of program rather than data 
+3. It doesn't support access modifier 
+4. Doesn't Support Inheritance
+5. Spread the task into functions

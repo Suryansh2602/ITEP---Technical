@@ -1,0 +1,838 @@
+Java Face to Face Interview Question
+1)	What do you mean by jdk, jvm and jre?
+Ans JDK : Java Development Kit, it has necessary library file (.class files ) documentation of java for build java applications, it contains JVM and JRE
+JRE : Java Runtime Environment , It is a software environment used to run the java application, contains JVM and java library or byte code (.class files)
+JVM: Java Virtual Machine, JVM is responsible to execute the .class files by loading each class in class loader according to the need and executing it line by line. 
+
+
+2)	Explain public static void main(String args[]) also explain why main method is public in Java?
+Ans :  mandatory entry point of every java program, execution starting point
+ public : is a access modifier so that it can be accessible from any class, making easier for JVM to find main method to start the execution,
+Static : static keyword allow method to execute by without creating the instance, JVM will invoke it directly by class Name .
+Void : return type of the method, means the method doesn’t return any value
+main : it is the specific name, JVM id programmed to look for it to begin the execution of java application
+String args[] : array of String as a parameter it allow to pass data into your program when you run it through command line.: parameter is the standard mechanism for passing commandl line argument 
+
+ 
+3)	Why main method is static ? can we call static method with Object? Is JVM call main method either with class or with Object.
+Ans :  static keyword make main method a class level member, when the program is launched the object doesn’t exist so JVM first need to create the object(you need main() to create object and you need object to create main()) is this cause circular dependency, So JVM looks for the 
+Public static void main(String agrs[]
+
+
+4)	If we can call the static method with  the object then why jvm does not call the static with the object.
+Ans :  you need main() to create object and you need object to create main()) is this cause circular dependency,  it will cost more memory.
+
+5)	Explain System.out.println() , System.out.print(), System.out.printf(),System.err.println().
+Ans : System is a class and out is a static member of System class representing standard output stream and err represent standard error stream. 
+println() : prints the statement of what is written as the parameter and moves the cursor in the new line
+print(): it works similar to the println() but does not print new line
+printf(): it is similar to printf() in C language , it takes formatted String.
+Example: 
+String name = “Suryansh”;
+Int age = 21;
+
+System.out.printf(“ Hello %s %n your age is %d ”, name , age); 
+Output: 
+Hello Suryansh
+your age is 21
+
+6)	Why Java introduce byte datatype ? Why java character datatype has 2 byte memory allocation?
+Ans : for memory efficiency and low level binary manipulation useful for reading and writing in byte Stream,fileInputStream.read() is designed to work with byte array
+ In older languages like C char is of 1 byte or 8 Bits which doesn’t represent the full range of international characters as java uses Unicode rather than ASCII. So memory associated for char in java is 2 bytes of 16 bits. 
+
+7)	What is the size of Boolean datatype in Java ?
+Ans: It is one exception in java’s “write once ,run anywhere” principle where datatypes are of fixed size. Because when a Boolean variable is stored individually it is often allocated 1 byte or 8 bits while Boolean needs only 1 bit to store true or false . 
+
+8)	What do you think, is java either partially object oriented or purely object oriented ? justify your answer.
+Ans : partially object oriented because primitive data types is not objects thus they do not have any property and methods. 
+
+9)	What is Object Oriented ? What is need of Object Oriented in real time application development?
+Ans : Object Oriented programming is a paradigm based on the concept of objects, 
+It organizes software design around the data rather than functions and logic, core philosophy is to model real world entities and interact with the program 
+
+10)	Explain the Object oriented concept with real life example.
+Ans : encapsulation: hiding the implementation, like the driver doesn’t need to know how the engine is working the implementation of engine’s components are enclosed in the engine block
+
+Abstraction: Showing essential features while hiding the complex implementation, like the driver have the facilities of steering, accelerator, break but the mechanism for this is hidden inside the bonut.
+
+Inhertance : a new (child class) using and implementing the behavior and properties of existing parent class, like each vehicle has the accelerator, colour, brake. A car , bus , truck all are implementing or using the property of a vehicle means they would inherit the vehicles property.
+
+Polymorphism : “many forms” means the object can take many forms
+Like car bike truck train all of them have breaking system but with different implementations
+
+
+11)	What is the difference between Encapsulation and Abstraction ?
+Ans : Encapsulation: the process of bundling the data or variables and the methods that can operate on that data, as a single unit is encapsulation, which in java is a class, Implementation level concept 
+
+Abstraction : Design level concept, It is the process of hiding the implementation or functionality of a method with the help of interface and abstract methods. 
+
+12)	What is POJO ? Explain POJO with suitable example also tell the importance of setter & getter method.
+Ans : Plain Old Java Object is created with fundamental OOPs principles.
+Keeping the data variables private ,
+Public accessors : to access data like getters();
+Public mutators : to initialize the particular variable ,
+A parameterized constructor to initialize the variable and a default constructor 
+And should not implement or extend any interface or class respectively. 
+
+13)	What is constructor ? Tell me the key points related with constructor.
+Ans) constructor is a special method of the class which invokes at the time of object creation, we usually use it to initialize the values of a object,
+	Constructor can’t be static, final, synchronized.
+	Constructor doesn’t have any return type
+	Constructor name is same as the class name
+	Automatic invocation it doesn’t call by any other methods in java by object.
+	
+
+14)	Tell me , Is private constructor  legal or illegal in Java ?
+Ans) legal, mostly used to create singleton class
+15)	Can we call constructor recursively in Java ?
+Ans) it is illegal in java, because it will be a infinite recursion and lead to program failure. 
+
+16)	Is static modifier applicable on constructor in Java ? If yes then why,  if no then why .
+Ans) NO. compiler will generate error “ modifier static not allowed here” , because it is for objects, constructors are the special member of the class, not the class level member.
+
+17)	What is “this” in Java ? Tell me the key points related with “this” keyword in java?
+Ans) this keyword in java refers to the current object, 
+Used to differentiate between instance and local variable 
+Eg. Class Emp {
+private int a ;
+public Emp(int a ){
+this.a = a
+}
+}
+
+Used to refer the current class method
+class Emp{
+private int a ;
+public int getA(){
+retrun a;
+}
+
+public int display(){
+this.getA();
+}
+
+Uses to pass the current object as an argument.
+class Service {
+    public void process(Client client) {
+      System.out.println(client);
+    }
+}
+
+class Client {
+    public void performAction(Service service) {
+        service.process(this); // Passes 'this' (the current Client object)
+    }
+}
+
+
+18)	How many reserved literal available in java and also explain their importance.
+Ans) 3 : true false and null
+19)	Explain static data member , static method, static block and static class in Java.
+Ans)Static member : only one copy of the data is maintained for the objects of class.
+	Static method : unlike instance they’re class level member and can be called by class name directly and by instance both 
+	Static Block :  static block used to initialize the static data members, static block executed just after the class loader loads the class. Before 1.7 main method was not mandatory the execution starts from the static block.
+	Static class : static class Is always the inner class outer class can’t be static
+20)	What is difference between instance member & static member.
+Ans) Static : only one copy of the data is maintained for all objects of the class
+	Instance: personal, separate copy corresponding to the Object, memory allocation will depend on the number of objects
+21)	When instance variable & static variable allocate the memory in java ?
+Ans)static variable gets the memory only one time at the time of class loading, instance variable gets the memory each time when the object is created. 
+22)	Is there any code in Java which execute before the main method ? 
+Ans)yes, static block and initializer block 
+23)	Can we define multiple static block in Java? If yes then what will be their execution order?
+Ans) Yes, according to the order as they’re defined
+24)	What is singleton class in java explain with suitable example.
+Ans: Singleton class in java whose only one object is created throughout the application life cycle.
+class Demo{
+private demo;
+public Demo instanceOfDemo(){
+if(demo == null){
+demo = new Demo();
+return demo;}
+return demo;
+}
+
+
+}
+
+25)	What is String ? How many way to initialize the string in java ?
+Ans  String is a predefined class in java, and there are two ways to initialize the String object 
+String s = “hello”;
+String s = new String(“Hello”); // in this we are creating two objects of String
+
+26)	What is difference between following two statement in Java ?                                                                                                         a) String s = “Hello”;
+b) String s = new String(“Hello”);
+Ans : A) String s = “hello”  memory created in SCP String constant or literal pool
+ b) String s = new String(“Hello”); -> memory created in SCP and heap
+       27) What do you mean mutability & immutability String in Java?
+	Ans : mutability String is changeable and immutable string  not changeable
+
+ 28) What is difference between equal() method and    ==  operator ?
+	Ans) equal method check content and equal operator can check reference address of the object.
+29) Explain the trim(), compareTo(),compareToIgnoreCase(), equals(),   equalsIgnoreCase(), length() ,intern method in Java.
+	Ans) trim() : removes leading and trailing white spaces.
+		compareTo(): returns integer value based on the Unicode numbers difference and check if strings are equal or not if 0 equal otherwise not equal.
+compareToIgnoreCase(): works similar as compareTo() but it ignores the case sensitivity
+equals(): check the content of the Strings if they’re equal and return Boolean value
+equalsIgnoreCase(): works similar as equals(), but ignores cases,
+length(): return the length of the string
+intern(): checks SCP and if the string with same content found it will retrun it's reference if not found it will place string in SCP and return the reference. Supporting immutability of the String.
+ 
+30) String is difference between String , StringBuffer and StringBuilder in Java?
+stringBuffer and String and StringBuilder all are serializable.
+String is not completely threadsafe
+	Ans : String : String class is immutable and thread safe and serializable
+String str  = “hello world”;
+StringBuffer : StringBuffer is mutable and thread safe faster than String 
+Eg:-
+StringBuffer sbf = new StringBuffer("Hello");
+        System.out.println("\nOriginal StringBuffer: " + sbf);
+        sbf.append(" World");  // Modifies in place
+        System.out.println("After append: " + sbf);
+        System.out.println("StringBuffer length: " + sbf.length());
+
+StringBuilder: StringBuilder is mutable and not thread safe faster than StringBuffer
+StringBuilder sbl = new StringBuilder("Hello");
+        System.out.println("\nOriginal StringBuilder: " + sbl);
+        sbl.append(" World");  
+        System.out.println("After append: " + sbl);
+        System.out.println("StringBuilder length: " + sbl.length());  // Output: 11
+        
+        // Conversion: StringBuffer/StringBuilder to String
+        String fromSbf = sbf.toString();
+        String fromSbl = sbl.toString();
+        System.out.println("\nConverted from StringBuffer: " + fromSbf);
+        System.out.println("Converted from StringBuilder: " + fromSbl);
+
+
+31)  What do you mean by method overloading in Java ? Tell me the key point related with method overloading.
+	Ans : Overloading of method means we can create multiple methods of same name is a same class but they differ in their formal arguments.
+
+32) Can we overload static method in Java ? can we overload main method in Java ?
+	Ans : Yes we can overload static methods and can overload main method but we cannot override it .
+
+    class Main{
+        public static void main(String... args){
+            area(2);
+            area(2,3);
+        }
+        public static void area(double s){
+            System.out.println(s*s);
+
+        }
+        public static void area(double l, double w){
+            System.out.println(l*b);
+        }
+    }
+
+33) What do you mean by array ? In which scenario of application you would like to use array concept.
+	Ans : Array is a fixed sized, homogenous data Structure stored in a contagious memory blocks. 
+    the indexes starts from zero to length of array - 1;
+    int arr[] = new int[size];
+    or 
+    int arr[] = {1,2,3,4,5}
+
+34)What is difference between array & var-arg (…) notation in Java ? --> varargs is variable length argument
+	Ans : array is homogenous data structure and var-args is backedup by one dimentional array, we use array in our programs, but we use var-args as the formal argument in a function, size of array is fixed, size of var-args is not fixed in size or (it is growable)
+
+35) can we use method overloading like behavior without implementing the method multiple times?
+	Ans : Yes, with the help of var-args and generic method
+    public void m1(int... args[]){}
+    and 
+    public static <T> void m2(T t[]){}
+
+36) Tell me the valid signature of defining of array in Java ?
+	Ans : int[] a = new int[5];
+    int arr[] = {1,2,3,4,5} --> shorthand way
+
+37) is array fixed in size ?
+	Ans : yes, array size is made fixed at the time of declaration
+
+38) What do mean by Inheritance in Java ? How many types of Inheritance supported by Java ?
+	Ans :  Inheritance is a process where one class inherits the properties of another class
+    child inherits parent's properties and methods 'extends'
+
+
+39) Why Java doesn’t support multiple inheritance.
+	Ans : If 2 classes have methods with same name and a child class inherit both classes then compiler will ger confuse and generate (ambiguity error)compile time error : multiple inheritance not allowed 
+
+40) What are advantage of inheritance in real time java applicaction ?
+	Ans : it helps in code reusability and follows the DRY principle makes code short, and increases code reusability and code achieve polymorphism (runtime polymorphism)
+
+41) Inhritance IS-A or HAS-A relation ship ? Explain HAS-A relationship with suitable example.
+	Ans : Inheritance is "IS-A" relationship, 
+    A 'HAS-A' relationship represent a composition or aggregation, where a class has a instance of another class and it also promotes loose coupling
+    loose coupling :- reduce the inter-dependencies between the component of a system, 
+    means it will reduce the risk of changing in one component will need to change any other components.
+
+42) What are execution order of constructor in case of Inheritance ?
+	Ans : Parent to child
+43) Explain “super” and “super()” in Java ?
+	Ans : super keyword refers to the parent class we can access and use methods of the parent class directly,
+    where super() is used to invoke the constructor of parent class.
+
+44) Expalin “this” and “this()” in Java ?
+	Ans : this refers to the current object and  this() refers to the constructor of the class of the current object 
+
+45)  What is method overriding in Java ? Tell me the key point related with method overloading.
+	Ans : Redefining the implementation of a method of parent class in child class to achieve runtime polymorphism. 
+    : Overriding occus in inheritance hierarchy
+    : we can't override static and final methods 
+    : the overriden methods can not have weaker access
+    : we use @override annotation in the child class to increase readability Optional 
+
+46) As a Java programmer when you like to override the method in Java ?
+	Ans : When I'm not satisfied with the previous implementation of a method and I need a specialized or Customized implementation. I will override that particular method
+
+47) can we can change the access modifier while overriding the method in Java ?
+	Ans : Yes, but if it is public we can't because while overriding we cannot assign weaker access modifier.
+
+48) can we change the return type of the method while overriding it ?
+	Ans  : From java 5 onwards we can change the retrun type of the overriding method to a more specific return type, (covariant return type)
+    covariant return type rule only applicable on reference type but for primitive type it will remain the same 
+
+49) What are the rule to be followed while overriding the method ?
+	Ans : the signature must be same 
+
+50) can we override the static Method ?
+	Ans : no, Static members are the class-level members It's associated with the class or we can say it is personla property of the class. 
+
+51) can we override protected method of super class as a public method in sub class?
+	Ans : Yes, we can
+
+52) can we override super class method without throws clause as a method with throws clause in sub class.
+
+	Ans : No, It will violet the contract, the signature must be same of the overriding of the method
+
+53) can we change an exception of a method with throws clause from SQLException to NumberFormatException while overriding it?
+	Ans : yes, we can change the exception according to the implementation 
+
+54) can we change a exception of a method with throws clause from unchecked exception to checked exception while overriding it?
+Ans: No, overriding the method is the run time binding so the exception will also occur at the runtime .
+
+55) How do you refer super class  overridden method in the sub class?
+	Ans : with the help of super 
+    eg. super.m1();
+
+56) can we override private method in java ?
+`	Ans : Private method use static binding the compiletime so we can't override it
+
+57) can we override an exception of a method with throws clause from checked to unchecked while overriding it?
+Ans: Yes, we can override an exception f a method with thrwos clause from checked to unchecked while overriding .
+
+class Parent{
+    public void m1() throws FileNotFoundException{}
+}
+class Child extends Parent{
+    public void m1() throws IndexOutOfBoundsException{}
+}
+	
+58) is it possible to override non-static method as a static method?
+	Ans : No, 
+
+ 59) What is difference between following two statement ?
+	a) Parent p = new Parent(); --> parent can use only it's methods
+	b) Child c = new Child(); --> child can access it's as well as parent's methods and properties except private 
+
+	Ans : no difference (if child extend parent then parent whole property rather than private is used by child) 
+
+60) In which scenario of application you would like to use Parent class reference variable holding child class object concept?
+	Ans : where I don’t  no which is need on runtime
+    runtime polymorphism , it is used in scenarios like heterogeneous collections Like List, Map 
+
+    class Animal{
+        public void makeNoise(){
+            System.out.println("Animal make generic sound");
+        }
+    }
+
+    class Dog extends Animal{
+        @override
+        public void makeNoise(){System.out.println("Barks");}
+    }
+    class Cow extends Animal{
+        @override
+        public void makeNoise(){System.out.println("Muhhh");}
+    }
+
+    class Main{
+        public static void main(String... args){
+            Animal animal [] = {New Cow(), new Dog()}
+            for(Animal a : Animal ){
+                System.out.println(a.makeSound()); // runtime polymorphism
+            }
+        }
+    }
+
+61)What is difference between Method Overloading and Method Overriding In Java?
+						Or
+      What is difference compile time polymorphism or runtime polymorphism ?
+	Ans : Method overloading is multiple methods with same name but different parameters which is also used to achieve as time polymorphism. 
+
+    Method overriding is rewriting the definition of parent class non static method with same signature to achieve runtime polymorphism.
+
+62)What is abstract class and abstract method in java ? list down the key point related with abstract class and abstract method.
+	Ans  : Abstract method is method which is declared but it doesn't have definition in it's class, if even a single method is present in a class the class must also declared as abstract with 'abstract' keyword.
+
+63)  We can’t create the object of abstract class so can we define the instance variable  and constructor in abstract class?	
+	Ans : Yes, we can create instance variable in the abstract class, and we can initialize them with the help of constructor, the constructor will be called in child class with the help of super() . 
+
+ 64)  is blank abstract class is possible in Java ?
+	Ans : Yes, we can create empty abstract class, but it is uncommon and considered as poor design, unless it is used as marker but we can use marker interface for it.
+    serializable interface is a marker interface.
+
+65) What is interface in Java ? Explain the real time utility of an interface ?
+	Ans: If we want to acheive full abstraction we can achieve it through interface, 
+    we can't have constructor inside the interface and the methods inside the interface are by default public and abstract, and variable inside the interface are implicitly public static and final. It is used to propose the guidlines and provide the standards.
+
+66) What is difference between jdk 1.7 interface and jdk 1.8 interface ?
+	Ans : In version 1.7 Interfaces can't have default method definition and methods can't have static methods.
+    from version 1.8 interfaces can have default and static method definition
+    default is not access modifier here it is to tell the compiler that this method has a default definition
+
+67) What is the difference between Abstract class and interface (jdk 1.8) ?
+	Ans : Abstract class can have abstract as well as concrete methods
+            Abstract class can have static as well as instance variables. 
+            Abstract class support only single inheritance
+            Abstract class can have access modifiers of it's members as public, default, protected and public.
+            We extends the abstract class
+
+            Interface can have only abstract methods and default and static methods..
+            Interface have variable public static final by default.
+            Interface is used to achieve multiple inheritance in java
+            In interface methods are by default public and abstract.
+            We implement the interface.
+
+68) can we achieve the behviour of multiple inheritance with the help of interface in java ?
+	Ans : Yes by implementing multiple interface
+
+69) How to declare interface, write a syntax ?
+	Ans : interface A{}
+
+70) Can we declare the interface as final in Java ?
+        Ans : No, 	
+71) Which keywords java compiler add before the interface fields?
+	Ans : abstract and public before methods 
+    and public static and final for the variable
+
+72) Does interface extends Object class by default ?
+	Ans : no
+73) can we declare interface with final keyoword ?
+	Ans: no
+
+74) After compilation of interface program, .class file will be generated for every interface in java. True of false. ?
+	Ans : true
+
+75)What is marker or tagged interface in java ?
+	Ans : Marker or tagged interfaces are the empty interface, they're are used to give some annotations and meta data to the compiler. like serializable is a marker interface.
+
+76) Can we change the value of field in interface after initialization ?
+	Ans : As the field in interface is final we Can't change the value. 
+
+77) What is final keyword in java ?
+	Ans : final keyword is used to declare the constant variable in java and we cannot initialize that value again during the whole program. It'll be constant always.
+
+78) Where you can use final keyword in java ?
+	Ans :  Where we want to create a non changable field and methods after the initialization. we use final keyword to declare that and when we want to prevent a class from being inherit we declare that class as final
+
+79) can we change the value of final variable ?
+	Ans : no
+
+80) can we use final keyword with the main method in java ?
+	Ans : no
+
+81) can we override final method in java ?
+	Ans : no
+
+82) What is static blank final variable . How to initialize static blank final variable in java ?
+Ans: with the help of static block or at the time of declaration
+
+83) Can we inherit final method in sub-class ?
+	Ans : Yes, but we can't override it.
+
+84) What is difference between abstract method and final method in Java
+	Ans : abstract method need to overriding final method cant be override it's difinition will remain same during the execution of the whole program.
+
+85) static & abstract can be used together? True or False ?
+	Ans : false
+
+86) static & final  can be used together?  True or False ?
+	Ans : yes
+
+87) abstract and final keyword can be used together? True or False ?
+	Ans : false 
+
+88) What is difference between final , finally and finialize ?
+	Ans : final keyword is used to restrict the modification of a variable making it constant to block overriding and block inheritance.
+    finally : finally block is a block in exception handling that gurantees the execution after try-cath regardless of exception, used for cleaning up the resources that are occupied by a process of program. 
+    finalize(): is a deprecated method in Object class invoked by the garbage collector for cleaning up the resources, though it is unreliable and not recommended in modern use.
+
+89) What is Exception ? Explan the exception hierarchy.
+	Ans : Abnormal termination of the program is genrally known as exception.
+    Object --> throwable class (methods like printStacktrace, getmessage()) 
+                     Exception                                                                 Error 
+    checked                              unchecked                            JVM error or assertion error 
+    ClassNotFound                       Arithmatic
+                                                ClassCastException
+    IOException                          IndexOutOfBoundsException
+    FileNotFoundException          NullPointerException
+
+                         
+
+90) What is difference between error and exception ?
+	Ans : Exceptions occure at the compiletime or runtime and are recoverable and recommended to handle
+    like FileNotFoundException, ArithmaticException, etc.
+
+    Errors : that occures due to JVM or Machine failure or memory exhaust or system crashes or power down .
+
+91) What is difference between checked exception and unchecked exception ?
+	Ans : Checked exceptions are that are checked by the compiler at the compile time 
+    like ClassNotFound, ClassCastException, FileNotFoundException, 
+    child of Exception.
+
+    unchecked exception that occures at the run Time by many reasons like unexpected user input, or illegal mathematical operations.
+    examples ArithmaticException, IndexOutOfBoundsException, InputMisMatchException
+
+92) What is difference between throw and throws.
+	Ans : Throws clause is used to declare an exception to inform the compiler about the error
+	Throw keyword is used in the method definition with a condition to throw an error
+
+93)  can we write try block without catch  ?
+	Ans : Yes,but it must be paired with finally, try-finally will execute perfectly but it'll not handle any exception
+    class Main{
+        public static void main(String... args){
+            try{
+                System.out.println(10/0);
+            }finally{
+                System.out.println("finally executed ");
+            }
+        }
+    }
+
+94) Can we write try block without catch or finally ?
+	Ans : No, compiletime error " try without catch"
+
+95) Can we write multiple catch block corresponding to single try block ? If yes then what are the conditions for it?
+	Ans : Yes, we can write the multiple catches with try, the condition is the order must be child to parent. 
+    otherwise compiler will generate error : "unreachable statement".
+
+96)Can we handle more then one exception using single catch block ? Explain with suitable example.
+	Ans :Yes, we can handle multiple exceptions with the help of pipe( | ) .
+
+97)Can we throw the error and throwable object ?
+Ans: Yes, because both are instances but throwing error is discouragable because it represents unrecoverable system failure.
+and throwable is root for all it is not recommended to throw.(Ex: OutOfMemoryError)
+it is used in (Reflection and serialization to wrap unknown error)
+
+98) Write a java program to create own custom exception class.
+      example: 
+
+        class DivisionByZero extends Exception{
+            public DivisionByZero(String msg){
+                super(msg);
+            }
+        }
+
+99) What is difference between final , finally , and finalize ?
+	Ans : final keyword is used to restrict the modification of a variable making it constant to block overriding and block inheritance.
+    finally : finally block is a block in exception handling that gurantees the execution after try-cath regardless of exception, used for cleaning up the resources that are occupied by a process of program. 
+    finalize(): is a deprecated method in Object class invoked by the garbage collector for cleaning up the resources, though it is unreliable and not recommended in modern use.
+
+
+100) What is finally block ? what is the use of finally block in Java application ?
+
+`Ans:- finally block in Exception handling gurantees the execution, it is used to release the resources 
+after every try block the finally block will execute definitly either there's an exceptionor not.
+
+101) Explain try with resource with suitable example.
+Ans: Eliminating the need for explicitly finally block try with resource is a feature that will automatically release the resources regardless of normal complition, exception,or early return.
+
+102) Write all possible valid combination of try, catch and finally .
+Various possible combinations of try- catch- finally?
+Ans: 1. try{
+
+}catch(ArrayIndexOutOfBoundsException e){
+
+}catch(IndexOutOfBoundsException k){
+
+}finally{
+
+}
+2.
+try{
+
+}catch(ArrayIndexOutOfBoundsException | ClassCastException e){
+
+}finally{
+
+}
+3.
+try{
+
+}catch(Exception e){
+
+}finally{
+
+}
+4.
+try(Scanner sc = new Scanner(System.in){
+
+}catch(InputMisMatchException){
+
+}
+
+
+
+1. Whenever we are writing try block compulsory we should write catch or finally that is ‘try’ without catch or finally is invalid syntax.
+
+2. we can write try without catch but it is not of any use because it will not handle any exception.
+
+3. Whenever we are writing finally block compulsory we should write try block. that is finally without try is invalid.
+
+4. In try catch finally, order is important.
+
+5. ‘try’ with multiple catch blocks Is valid but the order is important compulsory we should take from child to parent. by mistake if we are trying to take from parent to child then we will get compile time error.
+
+6. if we are defining to catch blocks for the same exception we will get compile time error.
+
+7. we can define try-catch-finally with in the try, with in the catch and with in finally blocks. Hence nesting of try-catch-finally is valid.
+
+8. For try-catch-finally curly braces are mandatory.
+102) Write all possible valid combination of try, catch and finally .
+
+ 103) What is Byte-Stream,Character Stream , FileOutPutStream and FileWriter ? 
+ Ans: Byte Stream: provide low-level I/O for binary data, read and write 8 bit chuncks without character interpretation making them suitable for non-textual data where efficiency and direct manipulation on byte data is needed.
+
+ FileOutPutStream : it extends OutputStream and provide method write(int b) and write(byte [] b) to perform wirte operation in bytes in a file 
+
+ Character Stream: it is an abstract byte-level I/O into 16 bit unicode characters, performing Automatic encoding and decoding, for text files making them suitable for internationalization and human readabile format. 
+
+ FileWriter: FileWriter extends Writer to write characters as string or character array to a file internally converting to byte and using platform's default charset and supports appending and overwrting with constructors like FileWriter("File.txt", true);
+
+104) What is Marker interface in java ? How to serialize the object in java. Explain Serialization with suitable example. 
+Ans: A marker interface in java is an empty interface used to give information or to the JVM, they're also known as metadata flags, without require method override.
+example: Serializable, Clonable
+
+We can serialize the object by implementing Serializable interface which is a marker interface.
+Serialization is a process of converting the object's state to a portable format for saving in a file, database or network transmission, and then deserialized to reconstruct the object. 
+for each object the SerialVersionUID is created to check the version to reconstruct it if it is different means probably the data is corrupted. 
+   Example:-
+public class Employee implements java.io.Serializable {
+   public String name;
+   public String address;
+   public transient int SSN;
+   public int number;                                                        
+    public void mailCheck() {
+      System.out.println("Mailing a check to " + name + " " + address);
+   }
+}
+105) What is transient keyword ? can we serialize static data member in class ? 
+Ans : transient keyword is a modifier in java used with instance variable to prevent that from serialization making them exclude their valuee to add in byte stream and default to their type initial value null for object and 0 for int.
+
+No, we can't serialize static data member in class.
+
+106)What is MultiThreading ? How many way to implement Thread in Java ?
+Ans:-it is a process of executing multiple tasks as thread simultaneously where each thread is a separate entity or process. Multithreading is also known as Thread-based Multitasking. It is same as multitasking, however in multiprocessing more than one CPUs are involved. On the other hand one CPU is involved in multitasking.
+
+There are two ways to create a thread:
+1.	By extending Thread class
+2.	By implementing Runnable interface.
+
+ 107) Difference between Thread class and Runnable Interface ?
+Ans : • Thread : it is the concrete implementation of runnable interface.
+we can't extend any other class even if required.
+it create separate thread for each object no sharing across thread . 
+
+Runnable: 
+runnable is a functional interface.
+we can extends a class.
+we can use lambda expression if we implement runnable interface.
+One instance can be shared with multiple threads for memory efficiency
+
+
+107) What is the Default prioprity of a thread in Java ? 
+Ans: 5
+108) Explain the life cycle of thread with suitable example ? 
+ New -->Runnable or Running --> waiting or timed waiting  ---> terminated;
+
+. Ans:- New − A new thread begins its life cycle in the new state. It remains in this state until the 
+program starts the thread. It is also referred to as a born thread.
+•	 Runnable − After a newly born thread is started, the thread becomes runnable. A thread in this state is considered to be executing its task.
+•	 Waiting − Sometimes, a thread transitions to the waiting state while the thread waits for another thread to perform a task. Thread transitions back to the runnable state only when another thread signals the waiting thread to continue executing.
+•	 Timed Waiting − A runnable thread can enter the timed waiting state for a specified interval of time. A thread in this state transitions back to the runnable state when that time interval expires or when the event it is waiting for occurs.
+•	 Terminated (Dead) − A runnable thread enters the terminated state when it completes its task or otherwise terminates.
+
+109) Can we call run() method directly ? Justify your answer . 
+Ans:- Yes, but it will not create a new thread and not enable concurrency.
+
+110) What is run() method and why overriding of run() method is mendatory ? 
+Ans:- run method encapsulates the thread's core logic and invoked by th JVM, when start is called on a Thread object.
+
+overriding run() is mendatory because it the Thread's run() method is the empty implementation simply return making thread ineffective to perform any task.
+.
+111) Explain sleep(), setPrioroity() and Join() method .
+Ans : The java. lang. Thread. sleep(long millis) method causes the currently executing thread to sleep for the specified number of milliseconds, subject to the precision and accuracy of system timers and schedulers.
+The setPriority() method of thread class is used to change the thread's priority. Every thread has a priority which is represented by the integer number between 1 to 10. Thread class provides 3 constant properties: public static int MIN_PRIORITY: It is the maximum priority of a thread.
+
+The join() method waits for a thread to die. In other words, it causes the currently running threads to stop executing until the thread it joins with completes its task.
+
+ 112) What is Synchronization ? Explain Object level locking and class level locking? 
+Ans:- Synchronization in java is a mechanism to coordinate the execution of multiple threads ensuring thread safe accross the shared resources.making sure that only one thread using the resource at one time
+no resource sharing. with synchronized keyword.
+
+Object level locking :-  Object level locking synchronizes on an instance of a class using the synchronized keyword with this or a specific object reference, ensuring that only one thread can access the synchronized block or method on that particular object instance at a time,
+
+
+
+113)Difference between synchronize method and synchronize block.
+Ans:- The difference is in which lock is being acquired: synchronized method acquires a lock on the whole object. ... synchronized blocks acquires a lock in the object between parentheses after the synchronized keyword. Meaning no other thread can acquire a lock on the locked object until the synchronized block exits
+
+114) Which method force thread to release the lock in synchronized area. Explain Interthread communication with suitable example.
+Ans:- Thread inside the synchronized method is set as the owner of the lock and is in RUNNABLE state. Any thread that attempts to enter the locked method becomes BLOCKED. When thread calls wait it releases the current object lock (it keeps all locks from other objects) and than goes to WAITING state.
+Inter-thread communication or Co-operation is all about allowing synchronized threads to communicate with each other.
+Cooperation (Inter-thread communication) is a mechanism in which a thread is paused running in its critical section and another thread is allowed to enter (or lock) in the same critical section to be executed.It is implemented by following methods of Object class:
+•	wait()
+•	notify()
+•	notifyAll()
+
+ 115) Explain wait(), notify() and notifyAll() method in java 
+Ans:- The wait() method causes the current thread to wait until another thread invokes the notify() or notifyAll() methods for that object. The notify() method wakes up a single thread that is waiting on that object's monitor. The notifyAll() method wakes up all threads that are waiting on that object's monitor.
+116) What is deadlock ? Explain with suitable example. 
+Ans:- Deadlock describes a situation where two or more threads are blocked forever, waiting for each other. ... A Java multithreaded program may suffer from the deadlock condition because the synchronized keyword causes the executing thread to block while waiting for the lock, or monitor, associated with the specified object.
+117) What is deamon Thread in Java ?
+Ans:- Daemon thread is a low priority thread (in context of JVM) that runs in background to perform tasks such as garbage collection (gc) etc., they do not prevent the JVM from exiting (even if the daemon thread itself is running) when all the user threads (non-daemon threads) finish their execution.
+
+ 118) What is Collection ? List down the 9 key interface in collection hierarchy ?
+Ans :- Daemon thread in java is a service provider thread that provides services to the user thread. Its life depend on the mercy of user threads i.e. when all the user threads dies, JVM terminates this thread automatically.
+
+ 119) What is difference between Collection and Collections. 
+ 	Ans : :- Collections is a utility class which is final and have static methods like : sort(), reverse()
+    cannot instantiate Collections, extends Object, no other implementations
+
+    Collection is a root interface has instanse methods like add(), size(), addAll() ;
+    Define structures and operations for grouping objects.
+
+120)What is difference between List adn Set?
+Sr. No.	Key	List	Set
+1	Positional access 	The list provides positional access of the elements in the collection.	Set doesn't provide positional access to the elements in the collection
+2	Implementation 	Implementation of List are ArrayList,LinkedList,Vector ,Stack	Implementation of a set interface is HashSet and  LinkedHashSet
+3	Duplicate 	We can store the duplicate elements in the list.	We can’t store duplicate elements in Set 
+4	Ordering 	List maintains insertion order of elements in the collection 	Set doesn’t maintain any order 
+5	Null Element 	The list can store multiple null elements 	Set can store only one null element
+
+121) What is difference between ArrayList and LinkedList ? 
+ArrayList	LinkedList
+1) ArrayList internally uses a dynamic array to store the elements.	LinkedList internally uses a doubly linked list to store the elements.
+2) Manipulation with ArrayList is slow because it internally uses an array. If any element is removed from the array, all the bits are shifted in memory.	Manipulation with LinkedList is faster than ArrayList because it uses a doubly linked list, so no bit shifting is required in memory.
+3) An ArrayList class can act as a list only because it implements List only.	LinkedList class can act as a list and queue both because it implements List and Deque interfaces.
+4) ArrayList is better for storing and accessing data.	LinkedList is better for manipulating data.
+
+122) What is difference between ArrayList and Vector
+ArrayList	Vector
+1) ArrayList is not synchronized.	Vector is synchronized.
+2) ArrayList increments 50% of current array size if the number of elements exceeds from its capacity.	Vector increments 100% means doubles the array size if the total number of elements exceeds than its capacity.
+3) ArrayList is not a legacy class. It is introduced in JDK 1.2.	Vector is a legacy class.
+4) ArrayList is fast because it is non-synchronized.	Vector is slow because it is synchronized, i.e., in a multithreading environment, it holds the other threads in runnable or non-runnable state until current thread releases the lock of the object.
+5) ArrayList uses the Iterator interface to traverse the elements.	A Vector can use the Iterator interface or Enumeration interface to traverse the elements.
+
+ 123) What is difference between Iterator and ListIterator ? 
+No.	Iterator	ListIterator
+1)	The Iterator traverses the elements in the forward direction only.	ListIterator traverses the elements in backward and forward directions both.
+2)	The Iterator can be used in List, Set, and Queue.	ListIterator can be used in List only.
+3)	The Iterator can only perform remove operation while traversing the collection.	ListIterator can perform ?add,? ?remove,? and ?set? operation while traversing the collection.
+
+124) What is difference between HashSet and LinkedHashSet ? 
+FEATURES		HASHSET	LINKEDHASHSET	
+Internal Working		HashSet internally uses HashMap for storing objects	LinkedHashSet uses LinkedHashMap internally to store objects	
+When To Use		If you don’t want to maintain insertion order but want store unique objects                                	If you want to maintain insertion order of elements then you can use LinkedHashSet	
+Order		HashSet does not maintain insertion order	LinkedHashSet maintains insertion order of objects	
+Complexity of Operations		HashSet gives O(1) complicity for insertion, removing and retrieving objects	LinkedHashSet gives insertion, removing and retrieving operations performance in order O(1).	
+Performance		HashSet performance is better according to LinkedHashSet and TreeSet.	The performance of LinkedHashSet is slow to TreeSet. The performance LinkedHashSet is almost similar to HashSet but slower because, LinkedHashSet maintains LinkedList internally to maintain the insertion order of elements	
+Compare		HashSet uses equals() and hashCode() methods to compare the objects	LinkedHashSet uses equals() and hashCode() methods to compare it’s objects	
+Null Elements		HashSet allows only one null objects	LinkedHashSet allows only one null objects.	
+Syntax		HashSet obj = new HashSet();	LinkedHashSetobj = new LinkedHashSet();	
+
+125) What do you mean by load-factor in HashSet ? 
+Ans : The Load factor is a measure that decides when to increase the HashMap capacity to maintain the get() and put() operation complexity of O(1). The default load factor of HashMap is 0.75f (75% of the map size).
+126) How Set Collection internally manage data uniqness.
+Ans : Set achieves the uniqueness in its elements through HashMap . In HashMap , each key is unique. So, when an object of HashSet is created, it will create an object of HashMap . When an element is passed to Set , it is added as a key in the HashMap in the add(Element e) method.
+
+127) What is sortedSet and how sorted set inernally manager the sorting. 
+Ans :
+SortedSet doesn't have its own storage—it relies on implementations like TreeSet (the main one) to handle the details. TreeSet uses a special structure called a red-black tree, which is a type of balanced binary search tree. This tree keeps elements in order by placing them in a tree shape where each node (element) has at most two children (left for smaller, right for larger), and it self-balances to stay efficient—no part gets too tall or slow. When you add an element, TreeSet finds the right spot using comparisons (via Comparable interface for natural order or Comparator for custom), inserts it, and adjusts the tree to keep balance and order. Removing or searching works the same way, always in log(n) time (fast, even for big sets). This automatic sorting means you can't add duplicates, and iteration (going through elements) always gives them in order
+
+128) What is DefaultNatural Sorting order and Customized Sorting 
+Default natural sorting order in Java refers to the built-in way elements are arranged automatically, like numbers from smallest to largest or strings from A to Z, based on the compareTo() method from the Comparable interface that most basic types like Integer or String already implement. Customized sorting lets you create your own rules for ordering, using the Comparator interface to decide how elements compare, such as sorting strings by length or in reverse order, and pass it to collections like TreeSet for use.
+
+129) Difference Between Comparator and Comparable 
+Comparable	Comparator
+1) Comparable provides a single sorting sequence. In other words, we can sort the collection on the basis of a single element such as id, name, and price.	The Comparator provides multiple sorting sequences. In other words, we can sort the collection on the basis of multiple elements such as id, name, and price etc.
+2) Comparable affects the original class, i.e., the actual class is modified.	Comparator doesn't affect the original class, i.e., the actual class is not modified.
+3) Comparable provides compareTo() method to sort elements.	Comparator provides compare() method to sort elements.
+4) Comparable is present in java.lang package.	A Comparator is present in the java.util package.
+5) We can sort the list elements of Comparable type by Collections.sort(List) method.	We can sort the list elements of Comparator type by Collections.sort(List, Comparator) method.
+
+130) Can we add null value in HashSet, LinkedHashSet and TreeSet 
+Ans: Yes, HashSet and LinkedHashSet allow one null value each, treating additional nulls as duplicates and ignoring them since sets prohibit duplicates, 
+while TreeSet does not permit null values at all, throwing a NullPointerException upon attempting to add null due to its reliance on comparable elements for sorting.
+
+
+131) Difference Between HashMap and LinkedHashMap ? 
+Ans : 1) First and foremost difference between LinkedHashMap and HashMap is order, HashMap doesn't maintain any order while LinkedHashMap maintains insertion order of elements in Java.
+
+
+2) LinkedHashMap also requires more memory than HashMap because of this ordering feature. As I said before LinkedHashMap uses doubly LinkedList to keep order of elements.
+
+
+3) LinkedHashMap actually extends HashMap and implements Map interface.
+132) Difference between HashMap and Hashtable ? 
+HashMap	Hashtable
+1) HashMap is non synchronized. It is not-thread safe and can't be shared between many threads without proper synchronization code.	Hashtable is synchronized. It is thread-safe and can be shared with many threads.
+2) HashMap allows one null key and multiple null values.	Hashtable doesn't allow any null key or value.
+3) HashMap is a new class introduced in JDK 1.2.	Hashtable is a legacy class.
+4) HashMap is fast.	Hashtable is slow.
+5) We can make the HashMap as synchronized by calling this code
+Map m = Collections.synchronizedMap(hashMap);	Hashtable is internally synchronized and can't be unsynchronized.
+6) HashMap is traversed by Iterator.	Hashtable is traversed by Enumerator and Iterator.
+7) Iterator in HashMap is fail-fast.	Enumerator in Hashtable is not fail-fast.
+8) HashMap inherits AbstractMap class.	Hashtable inherits Dictionary class.
+
+133) Is Map a collection ? If yes then why it is not child of collection
+134) Can we add null key in HashMap, LinkedHashMap and TreeMap. 
+	Ans : it also allows null keys and values.LinkedHashMap is a subclass of HashMap,
+135) Difference between for-each loop and Iterator ? 
+•	Ans : Using for-Each loop − Use a foreach loop and access the array using object.
+•	Using Iterator − Use a foreach loop and access the array using object.
+Differences
+•	ConcurrentModificationException − Using for-Each loop, if an object is modified, then ConcurrentModificationException can occur. Using iterator, this problem is elliminated.
+•	Size Check − Using for-Each, size check is not required. Using iterator if hasNext() is not used properly, NoSuchElementException can occur.
+•	Performance − Performance is similar for both cases
+
+136) Prepare the programming example of hashCode, equals method 
+137) Prepare the programming example of Comparator and comparable. (Use userdefined class).
+
+
+
+
+--------------------------- DBMS------------------------------
+Q: . What is DBMS?
+Ans: A database is a collection large collection of structured data stored in the table and can perform CRUD operations with the help of Database languages like MySQL, MongoDB, Postgres SQL etc.
+
+Q: Difference between file and database?
+Ans: 1.  File holds unstructured data while DBMS contains Structured data.
+2. Operation on the data inside file is hard and have to write logic but in databases is easy with languages like Mysql,
+3. File can hold small amount of data, databases can hold large amount of data.
+4. to search a particular data in a file need to scan whole file, In DBMS seaching can be done with DRL and Clause.
+
+Q: What is RDBMS?
+Ans: Collection of a Structured inter-related data. In this multiple tables are connected with the help of Foreign key, To represent Normalized data.
+
+Q: How will you differentiate between RDBMS and DBMS?               
+
+ 
+
+
+
+
+
+

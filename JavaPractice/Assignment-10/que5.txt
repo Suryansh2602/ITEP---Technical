@@ -1,0 +1,18 @@
+What is Constructor? List down the keypoints about constructor.
+
+A constructor is a special member function of a class that is automatically invoked when an object of that class is created, used to initialize the object's state and allocate memory for it. Key characteristics include having the same name as the class, no return type (not even void), and automatic invocation upon object creation. Constructors can be parameterized or default (if none is explicitly defined), and multiple constructors can exist within a class through overloading.  [1, 2, 3, 4]  
+Key Points About Constructors 
+
+• Name: A constructor's name is always the same as the class name. [1, 2, 3, 4, 5]  
+• No Return Type: Constructors do not have a return type, not even void. [1, 2]  
+• Automatic Invocation: They are automatically called when an object of the class is created, typically using the new keyword. [2, 3, 6]  
+• Object Initialization: The primary purpose is to initialize the newly created object by assigning initial values to its data members or setting up its state. [1, 2]  
+• Default Constructor: If no constructor is explicitly defined in a class, the compiler provides a default, no-argument constructor. [1, 2]  
+• Parameterized Constructor: These constructors accept arguments, and the object must be instantiated with the corresponding number of arguments. [2]  
+• Constructor Overloading: A class can have multiple constructors with different parameter lists. [1, 2]  
+• Constructor Chaining: The this() keyword can be used to call another constructor within the same class. [1]  
+• Superclass Constructor: The super keyword is used within a subclass constructor to explicitly call a constructor of the superclass. [1]  
+• Access Modifiers: Constructors can have access modifiers (like public, protected, or private), influencing how and where the class can be instantiated. [1, 2]  
+
+
+
